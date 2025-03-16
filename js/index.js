@@ -18,4 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
         <h1 class="title">${featuredArticle.title}</h1>
         <p class="brief">${featuredArticle.brief}</p>
     `
+
+    const articlesContainer = document.getElementById("articles")
+    articlesContainer.innerHTML = articles.map((article) => {
+        return `
+            <div class="article">
+                <img class="article-img" src=${article.imgUrl}>
+                <p class="created-at">${article.createdAt}</p>
+                <h1 class="title">${article.title}</h1>
+                <p class="brief">${article.brief}</p>
+            </div>
+        `
+    }).join("")
 });
