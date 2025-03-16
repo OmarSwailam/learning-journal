@@ -239,6 +239,33 @@ main {
         grid-column: span 6;
         padding: 1em 1em;
     }
+
+    .created-at {
+        font-size: 1.25rem;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .brief {
+        font-size: 1.25rem;
+    }
+
+    .featured .created-at {
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .featured .title {
+        font-size: 3.5rem;
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .featured .brief {
+        font-size: 1.5rem;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+    }
+
 }
 
 @media (min-width: 992px) {
