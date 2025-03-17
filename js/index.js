@@ -1,4 +1,5 @@
 import { articlesArray, articleBody } from "./articles.js";
+import { aboutMe } from "./about.js"
 
 const featuredArticle = articlesArray[0];
 const initialArticles = articlesArray.slice(1, 4);
@@ -9,15 +10,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.getElementById("nav-items");
     const home = document.getElementById("home");
     const logo = document.getElementById("logo");
+    const about = document.getElementById("about");
     const mainContainer = document.getElementById("main");
 
     hamburger.addEventListener("click", () => navItems.classList.toggle("expand"));
     home.addEventListener("click", renderHome);
     logo.addEventListener("click", renderHome);
+    about.addEventListener("click", renderAbout);
 
     renderHome();
 
-    function getRecentArticles(id) {
+    function renderAbout() {
+        mainContainer.innerHTML = `
+            <div class="about-section">
+                <img class="my-pic" src="./images/omar.jpg" alt="photo of me">
+                <h1 class="bio">${aboutMe.bio}</h1>
+                <p class="article-body">${aboutMe.firstSection}</p>
+                <br>
+                <h3 class="sub-label">How I stay committed to learning</h3>
+                <p class="article-body">${aboutMe.secondSection}</p>
+                <br>
+                <h3 class="sub-label">How I got started</h3>
+                <p class="article-body">${aboutMe.thirdSection}</p>
+            </div>
+            <form class="contact-me-form">
+            
+            </form>
+            <div id="recent-articles" class="recent-articles">
+                <h3 class="sub-label">Recent Articles</h3>
+                ${getRecentArticles().map(renderArticleCard).join("")}
+            </div>
+        `
+    }
+
+    function getRecentArticles(id = null) {
         return articlesArray
             .filter(article => article.id !== id)
             .sort(() => Math.random() - 0.5)
@@ -74,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addTitleListeners();
     }
 
-    function renderArticle(article) {
+    function renderArticle(article = null) {
         const splitIndex = Math.floor(articleBody.length / 2);
         const firstPart = articleBody.slice(0, splitIndex);
         const secondPart = articleBody.slice(splitIndex);
