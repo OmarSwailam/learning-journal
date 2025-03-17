@@ -277,7 +277,8 @@ main {
     margin: 1.5em 0;
 }
 
-.article-body {
+.article-body,
+.description {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #333;
@@ -327,15 +328,85 @@ main {
     margin: 0;
 }
 
-.about-section .article-body {
+.about-section .description {
     grid-column: 1 / -1;
     margin: 0;
+}
+
+.about-section .article-body {
+    grid-column: 1 / -1;
 }
 
 .about-section .sub-label {
     grid-column: 1 / -1;
     margin: 0 0 0.5em 0;
 }
+
+.form-section {
+    grid-column: 1 / -1;
+    padding: 2em;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+input,
+textarea {
+    font-family: "Source Sans 3", sans-serif;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #202020;
+    padding: 1.1em 0.5em 0.1em 0.5em;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.contact-form button {
+    margin-top: 1.5em;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form button:hover,
+.contact-form button:focus {
+    background-color: #333333;
+    transform: scale(1.05);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin: 20px auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
 
 footer {
     height: 100px;
@@ -444,8 +515,10 @@ footer p {
     }
 
     .article-display .brief,
-    .article-body {
-        font-size: 1rem;
+    .article-body,
+    .description,
+    .sub-label {
+        font-size: 1.5rem;
     }
 
     .article-display .article-img {
@@ -462,9 +535,10 @@ footer p {
         align-self: flex-end;
     }
 
-    .about-section .article-body {
+    .about-section .description {
         grid-column: 4 / -1;
     }
+
 }
 
 @media (min-width: 992px) {
@@ -493,5 +567,13 @@ footer p {
 
     .bio {
         align-self: flex-end;
+    }
+
+    input,
+    textarea {
+        border-bottom: 1.5px solid #202020;
+        padding: 1.2em 0.6em 0.2em 0.6em;
+        font-size: 1.5rem;
+        width: 100%;
     }
 }

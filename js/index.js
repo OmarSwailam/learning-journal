@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="about-section">
                 <img class="my-pic" src="./images/omar.jpg" alt="photo of me">
                 <h1 class="bio">${aboutMe.bio}</h1>
-                <p class="article-body">${aboutMe.firstSection}</p>
+                <p class="description">${aboutMe.firstSection}</p>
                 <br>
                 <h3 class="sub-label">How I stay committed to learning</h3>
                 <p class="article-body">${aboutMe.secondSection}</p>
@@ -33,14 +33,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h3 class="sub-label">How I got started</h3>
                 <p class="article-body">${aboutMe.thirdSection}</p>
             </div>
-            <form class="contact-me-form">
-            
-            </form>
+            <div class="form-section">
+                    <h1 class="form-label">Lets Communicate!</h1>
+                <form class="contact-form">
+                    <input type="text" required placeholder="John Doe" name="name" aria-label="full name">
+                    <input type="email" required placeholder="johndeo@youremail.com" name="email" aria-label="email">
+                    <textarea name="message" required ></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
             <div id="recent-articles" class="recent-articles">
                 <h3 class="sub-label">Recent Articles</h3>
                 ${getRecentArticles().map(renderArticleCard).join("")}
             </div>
+            <div id="toast" class="toast"></div>
         `
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast("Message sent successfully!");
+            form.reset();
+        });
+
     }
 
     function getRecentArticles(id = null) {
@@ -48,6 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
             .filter(article => article.id !== id)
             .sort(() => Math.random() - 0.5)
             .slice(0, 3);
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
     }
 
     function renderArticleCard(article) {
