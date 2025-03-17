@@ -19,6 +19,7 @@ body {
 .container {
     width: 100%;
     max-width: 1600px;
+    padding: 1em;
 }
 
 nav {
@@ -202,7 +203,7 @@ main {
 }
 
 .article {
-    padding: 1em 2em;
+    padding: 1em;
     grid-column: span 12;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     margin: 1em;
@@ -244,11 +245,6 @@ main {
     outline: none;
 }
 
-.article-display {
-    margin-left: 1em;
-
-}
-
 .back-btn {
     align-self: self-start;
 }
@@ -288,13 +284,24 @@ main {
     text-align: justify;
 }
 
-.article-sub-label {
+.sub-label {
     font-weight: 700;
     font-size: 1.25rem;
     line-height: 100%;
     letter-spacing: 0%;
     margin-top: 1.1em;
     margin-bottom: 0.25em;
+}
+
+.recent-articles {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+}
+
+.recent-articles .sub-label {
+    grid-column: 1 / -1;
+    text-align: center;
 }
 
 footer {

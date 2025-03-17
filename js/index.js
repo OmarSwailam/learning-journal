@@ -47,8 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `
         }).join("") + `
-        <button class="view-more" id=view-more>View More</button>
-    `
+            <button class="view-more" id=view-more>View More</button>
+        `
+        let titles = document.querySelectorAll(".title")
 
         const viewMoreBtn = document.getElementById("view-more")
         if (viewMoreBtn) {
@@ -61,16 +62,23 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p class="created-at">${article.createdAt}</p>
                         <a data-id="${article.id}" class="title">${article.title}</a>
                         <p class="brief">${article.brief}</p>
-                    </div>
-    
+                    </div>    
                 `
                 }).join("")
+                titles = document.querySelectorAll(".title")
+                titles.forEach((title) => {
+                    title.addEventListener("click", (e) => {
+                        console.log("clicked")
+                        const articleId = parseInt(e.target.dataset.id);
+                        renderArticle(articlesArray.filter((article) => article.id === articleId)[0])
+                    })
+                })
             })
         }
 
-        const titles = document.querySelectorAll(".title")
         titles.forEach((title) => {
             title.addEventListener("click", (e) => {
+                console.log("clicked")
                 const articleId = parseInt(e.target.dataset.id);
                 renderArticle(articlesArray.filter((article) => article.id === articleId)[0])
             })
@@ -90,21 +98,38 @@ document.addEventListener("DOMContentLoaded", () => {
             <h1 class="title">${article.title}</h1>
             <p class="brief">${article.brief}</p>
             <img class="article-img" src=${article.imgUrl}>
-            <h3 class="article-sub-label">Introduction</h3>
+            <h3 class="sub-label">Introduction</h3>
             <p class="article-body">${firstPart}</p>
 
-            <h3 class="article-sub-label">More Details</h3>
+            <h3 class="sub-label">More Details</h3>
             <p class="article-body">${secondPart}</p>
         </div>
+        <div id="recent-articles" class="recent-articles"></div>
 
     `
-
         const backBtn = document.getElementById("back-btn")
         backBtn.addEventListener("click", renderHome)
-    }
 
-    function renderRecentArticles() {
-
+        const recentArticlesContainer = document.getElementById("recent-articles")
+        recentArticlesContainer.innerHTML = `<h3 class="sub-label">Recent Articles</h3>` +
+            getRecentArticles(article.id).map((article) => {
+                return `
+                    <div class="article">
+                        <img class="article-img" src=${article.imgUrl}>
+                        <p class="created-at">${article.createdAt}</p>
+                        <a data-id="${article.id}" class="title">${article.title}</a>
+                        <p class="brief">${article.brief}</p>
+                    </div>
+                `
+            }).join("")
+        titles = document.querySelectorAll(".title")
+        titles.forEach((title) => {
+            title.addEventListener("click", (e) => {
+                console.log("clicked")
+                const articleId = parseInt(e.target.dataset.id);
+                renderArticle(articlesArray.filter((article) => article.id === articleId)[0])
+            })
+        })
     }
 
     hamburger.addEventListener("click", toggleHamburger)
