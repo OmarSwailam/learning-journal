@@ -20,14 +20,14 @@
 
 <body>
     <nav class="container">
-        <div class="nav-logo">
+        <div id="logo" class="nav-logo">
             <img class="logo-img" src="./images/logo.png" alt="logo">
             <a class="logo-text" href="#">My learning journal</a>
         </div>
 
         <ul class="nav-items" id="nav-items">
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">About me</a></li>
+            <li id="home" class="nav-item"><a class="nav-link">Home</a></li>
+            <li id="about" class="nav-item"><a class="nav-link">About me</a></li>
         </ul>
 
         <button class="hamburger" id="hamburger">
@@ -35,9 +35,7 @@
         </button>
     </nav>
 
-    <main class="container">
-        <div class="featured" id="featured"></div>
-        <div class="articles" id="articles"></div>
+    <main id="main" class="container">
     </main>
 
     <footer>
