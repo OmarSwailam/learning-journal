@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             form.reset();
         });
 
+        addTitleListeners();
     }
 
     function getRecentArticles(id = null) {
